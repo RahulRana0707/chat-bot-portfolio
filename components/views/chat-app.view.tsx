@@ -17,9 +17,11 @@ import { Message, MessageContent } from "@/components/ai-elements/message";
 import { Response } from "@/components/ai-elements/response";
 import { ChatWelcome } from "./chat-welcome";
 import { ThemeToggler } from "../theme-toggler";
+import { parseMessage } from "@/lib/parse-message";
+import { MessagePartsRenderer } from "@/components/messages-parts";
 
 export const ChatAppView = () => {
-  const { messages, sendMessage } = useChat({});
+  const { messages, sendMessage } = useChat();
 
   const [inputValue, setInputValue] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
@@ -29,8 +31,6 @@ export const ChatAppView = () => {
     setInputValue(prompt);
     if (textareaRef.current) textareaRef.current.focus();
   }, []);
-
-  console.log("Chat Messages:", messages);
 
   return (
     <div className="w-full h-full flex flex-col justify-start overflow-hidden">
@@ -46,16 +46,36 @@ export const ChatAppView = () => {
               >
                 <MessageContent>
                   {message.parts.map((part, i) => {
-                    switch (part.type) {
-                      case "text": // we don't use any reasoning or tool calls in this example
-                        return (
-                          <Response key={`${message.id}-${i}`}>
-                            {part.text}
-                          </Response>
-                        );
-                      default:
-                        return null;
+                    if (part.type === "text") {
+                      const parsedText = parseMessage(part.text);
+                      return (
+                        <div key={`${message.id}-${i}`} className="space-y-2">
+                          {parsedText.map((parsedPart, i) => {
+                            if (parsedPart.type === "text") {
+                              if (parsedPart.content.trim() === "") return null;
+                              return (
+                                <Response key={`${message.id}-${i}`}>
+                                  {parsedPart.content}
+                                </Response>
+                              );
+                            } else if (parsedPart.type === "json") {
+                              return (
+                                <MessagePartsRenderer
+                                  key={`${message.id}-${i}`}
+                                  type={parsedPart?.content?.type}
+                                  payload={{
+                                    generatedText: part.text,
+                                  }}
+                                />
+                              );
+                            } else {
+                              return null;
+                            }
+                          })}
+                        </div>
+                      );
                     }
+                    return null;
                   })}
                 </MessageContent>
               </Message>
