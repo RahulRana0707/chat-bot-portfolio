@@ -11,7 +11,7 @@ export const RenderPersonalDetails = ({
       if (generatedText.includes(value)) return true;
       return false;
     },
-    [generatedText]
+    [generatedText],
   );
 
   return (
