@@ -1,6 +1,12 @@
 {
   "name": "portfolio",
+  "description": "An interactive AI-powered portfolio that helps visitors explore Rahul's skills, projects, experiences, education, and more — all through natural conversation. The assistant responds in a structured + conversational format, making it easy to showcase information dynamically.",
   "version": "0.1.0",
+  "author": {
+    "name": "Rahul Rana",
+    "email": "rahul.dev.240801@gmail.com",
+    "url": "https://rahul-bot.vercel.app/"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",
