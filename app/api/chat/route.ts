@@ -10,11 +10,12 @@ export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json();
 
   const result = streamText({
-    model: google("gemini-2.0-flash"),
-    messages: convertToModelMessages(messages),
+    model: google("gemini-2.5-flash"),
+    messages: await convertToModelMessages(messages),
     system: AI_CHAT_BOT_SYSTEM_PROMPT,
     temperature: 0.7,
   });
 
   return result.toUIMessageStreamResponse();
+
 }
