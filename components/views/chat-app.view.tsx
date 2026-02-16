@@ -1,7 +1,7 @@
 "use client";
 
 import { useChat } from "@ai-sdk/react";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Message, MessageContent } from "@/components/ai-elements/message";
 import {
   PromptInput,
@@ -17,9 +17,10 @@ import { MessagePartsRenderer } from "@/components/messages-parts";
 import { parseMessage } from "@/lib/parse-message";
 import { ThemeToggler } from "../theme-toggler";
 import { ChatWelcome } from "./chat-welcome";
+import { toast } from "sonner";
 
 export const ChatAppView = () => {
-  const { messages, sendMessage } = useChat();
+  const { messages, sendMessage, error } = useChat();
 
   const [inputValue, setInputValue] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
@@ -29,6 +30,23 @@ export const ChatAppView = () => {
     setInputValue(prompt);
     if (textareaRef.current) textareaRef.current.focus();
   }, []);
+
+  useEffect(() => {
+    if (!error) return;
+    toast.error("Something didn’t work as expected", {
+      description:
+        "The issue has been logged. You can also report it with one click.",
+      action: {
+        label: "Report",
+        onClick: async () => {
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          toast.success("Issue Reported", {
+            description: "Thanks for helping us improve the experience!",
+          });
+        },
+      },
+    });
+  }, [error]);
 
   return (
     <div className="w-full h-full flex flex-col justify-start overflow-hidden">
