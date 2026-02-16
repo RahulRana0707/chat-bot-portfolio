@@ -62,8 +62,8 @@ type DivGridProps = {
 };
 
 type CellStyle = React.CSSProperties & {
-  ["--delay"]?: string;
-  ["--duration"]?: string;
+  "--delay"?: string;
+  "--duration"?: string;
 };
 
 const DivGrid = ({

@@ -1,8 +1,6 @@
-import React from "react";
-
-import { Button } from "@/components/ui/button";
 import { File } from "lucide-react";
 import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
 
 export const RenderResumeDownloadButton = () => {
   const onDownloadResume = () => {

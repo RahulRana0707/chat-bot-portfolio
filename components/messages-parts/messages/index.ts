@@ -1,3 +1,4 @@
+export { RenderBooking } from "@/components/messages-parts/messages/render-booking";
 export { RenderEducation } from "@/components/messages-parts/messages/render-education";
 export { RenderExperience } from "@/components/messages-parts/messages/render-experience";
 export { RenderPersonalDetails } from "@/components/messages-parts/messages/render-personal-details";

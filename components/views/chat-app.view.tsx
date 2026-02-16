@@ -1,9 +1,8 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
-
 import { useChat } from "@ai-sdk/react";
-
+import { useCallback, useRef, useState } from "react";
+import { Message, MessageContent } from "@/components/ai-elements/message";
 import {
   PromptInput,
   PromptInputActionMenu,
@@ -13,12 +12,11 @@ import {
   PromptInputToolbar,
   PromptInputTools,
 } from "@/components/ai-elements/prompt-input";
-import { Message, MessageContent } from "@/components/ai-elements/message";
 import { Response } from "@/components/ai-elements/response";
-import { ChatWelcome } from "./chat-welcome";
-import { ThemeToggler } from "../theme-toggler";
-import { parseMessage } from "@/lib/parse-message";
 import { MessagePartsRenderer } from "@/components/messages-parts";
+import { parseMessage } from "@/lib/parse-message";
+import { ThemeToggler } from "../theme-toggler";
+import { ChatWelcome } from "./chat-welcome";
 
 export const ChatAppView = () => {
   const { messages, sendMessage } = useChat();

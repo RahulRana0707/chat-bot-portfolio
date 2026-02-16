@@ -1,4 +1,3 @@
-import { Label } from "@/components/ui/label";
 import { GraduationCap } from "lucide-react";
 import {
   Accordion,
@@ -6,6 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Label } from "@/components/ui/label";
 
 export const RenderEducation = () => {
   return (

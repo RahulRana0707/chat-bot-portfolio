@@ -1,10 +1,8 @@
 "use client";
 
-import React from "react";
-
-import { SKILLS_CONTENT } from "@/content/skills";
-import { Label } from "@/components/ui/label";
 import { SkillsRenderer } from "@/components/skills-renderer";
+import { Label } from "@/components/ui/label";
+import { SKILLS_CONTENT } from "@/content/skills";
 
 export const RenderSkills = () => {
   return (

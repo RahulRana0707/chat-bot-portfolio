@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { SOCIALS_CONTENT } from "@/content/socials";
-import React from "react";
 
 export const RenderSocials = () => {
   return (

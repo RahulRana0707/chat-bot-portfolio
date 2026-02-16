@@ -19,4 +19,5 @@ export enum MessagePayloadType {
   Socials = "socials",
   PersonalInfo = "personal_info",
   Resume = "resume",
+  Booking = "booking",
 }

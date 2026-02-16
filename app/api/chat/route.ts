@@ -1,21 +1,28 @@
-import { convertToModelMessages, streamText, type UIMessage } from "ai";
-
 import { google } from "@ai-sdk/google";
+import { convertToModelMessages, streamText, type UIMessage } from "ai";
+import { NextResponse } from "next/server";
 import { AI_CHAT_BOT_SYSTEM_PROMPT } from "@/prompt/system-prompt";
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
-  const { messages }: { messages: UIMessage[] } = await req.json();
+  try {
+    const { messages }: { messages: UIMessage[] } = await req.json();
 
-  const result = streamText({
-    model: google("gemini-2.5-flash"),
-    messages: await convertToModelMessages(messages),
-    system: AI_CHAT_BOT_SYSTEM_PROMPT,
-    temperature: 0.7,
-  });
+    const result = streamText({
+      model: google("gemini-2.5-flash"),
+      messages: await convertToModelMessages(messages),
+      system: AI_CHAT_BOT_SYSTEM_PROMPT,
+      temperature: 0.7,
+    });
 
-  return result.toUIMessageStreamResponse();
-
+    return result.toUIMessageStreamResponse();
+  } catch (error) {
+    console.error("Error in chat route:", error);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 },
+    );
+  }
 }

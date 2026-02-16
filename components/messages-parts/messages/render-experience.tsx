@@ -1,3 +1,6 @@
+import { Code } from "lucide-react";
+import { Fragment } from "react";
+import { SkillsRenderer } from "@/components/skills-renderer";
 import {
   Accordion,
   AccordionContent,
@@ -6,9 +9,6 @@ import {
 } from "@/components/ui/accordion";
 import { Label } from "@/components/ui/label";
 import { EXPERIENCES_CONTENT } from "@/content/experience";
-import { Fragment } from "react";
-import { Code } from "lucide-react";
-import { SkillsRenderer } from "@/components/skills-renderer";
 
 export const RenderExperience = () => {
   return (
