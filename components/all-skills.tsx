@@ -1,4 +1,3 @@
-import { PlaywrightIcon } from "@/assets/icons/playwright-icon";
 import type { ReactNode } from "react";
 import {
   FaCode,
@@ -13,7 +12,9 @@ import {
   SiExpress,
   SiGithubactions,
   SiJavascript,
+  SiJest,
   SiJsonwebtokens,
+  SiLangchain,
   SiMongodb,
   SiNextdotjs,
   SiNodedotjs,
@@ -22,15 +23,13 @@ import {
   SiPostman,
   SiPrisma,
   SiReact,
+  SiRedux,
   SiSass,
   SiTailwindcss,
   SiTypescript,
-  SiWebauthn,
   SiWebpack,
-  SiRedux,
-  SiJest,
-  SiLangchain,
 } from "react-icons/si";
+import { PlaywrightIcon } from "@/assets/icons/playwright-icon";
 
 /** Step 1: Define your enum */
 export enum Skill {

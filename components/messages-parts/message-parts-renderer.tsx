@@ -1,14 +1,14 @@
-import type { MessagePayloadType } from "@/types/message";
-
 import {
-  RenderSkills,
-  RenderProjects,
-  RenderExperience,
+  RenderBooking,
   RenderEducation,
-  RenderSocials,
+  RenderExperience,
   RenderPersonalDetails,
+  RenderProjects,
   RenderResumeDownloadButton,
+  RenderSkills,
+  RenderSocials,
 } from "@/components/messages-parts/messages";
+import type { MessagePayloadType } from "@/types/message";
 
 export interface IMessageRendererProps {
   generatedText: string;
@@ -30,6 +30,7 @@ const MessagePartMapper: Record<
   socials: RenderSocials,
   personal_info: RenderPersonalDetails,
   resume: RenderResumeDownloadButton,
+  booking: RenderBooking,
 };
 
 export const MessagePartsRenderer = ({

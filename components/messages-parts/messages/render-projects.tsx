@@ -1,3 +1,6 @@
+import { Link } from "lucide-react";
+import { Fragment } from "react";
+import { SiGithub } from "react-icons/si";
 import { SkillsRenderer } from "@/components/skills-renderer";
 import {
   Accordion,
@@ -7,9 +10,6 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { PROJECTS_CONTENT } from "@/content/projects";
-import { Fragment } from "react";
-import { SiGithub } from "react-icons/si";
-import { Link } from "lucide-react";
 
 export const RenderProjects = () => {
   return (

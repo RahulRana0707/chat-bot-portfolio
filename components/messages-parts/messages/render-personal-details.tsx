@@ -1,7 +1,7 @@
-import { Label } from "@/components/ui/label";
-import { PERSOANL_DETAILS_CONTENT } from "@/content/personal-details";
 import { useCallback } from "react";
 import type { IMessageRendererProps } from "@/components/messages-parts";
+import { Label } from "@/components/ui/label";
+import { PERSOANL_DETAILS_CONTENT } from "@/content/personal-details";
 
 export const RenderPersonalDetails = ({
   generatedText,

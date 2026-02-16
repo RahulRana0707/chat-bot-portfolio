@@ -1,4 +1,4 @@
-import { SiGithub, SiLinkedin, SiLeetcode, SiGmail } from "react-icons/si";
+import { SiGithub, SiGmail, SiLeetcode, SiLinkedin } from "react-icons/si";
 
 export const SOCIALS_CONTENT = [
   {

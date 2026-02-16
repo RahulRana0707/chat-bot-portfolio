@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Lexend } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
 import { BackgroundRippleEffect } from "@/components/background-ripple-effect";
+import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 
 const lexend = Lexend({

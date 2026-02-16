@@ -1,7 +1,6 @@
-import React from "react";
-import { SkillMapper, type Skill } from "@/components/all-skills";
-import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
+import { type Skill, SkillMapper } from "@/components/all-skills";
+import { Badge } from "@/components/ui/badge";
 
 interface ISkillsRendererProps {
   skills: Skill[];
