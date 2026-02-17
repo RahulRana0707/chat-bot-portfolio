@@ -1,0 +1,53 @@
+---
+title: "The Rise of the AI Engineer"
+date: "2024-02-28"
+description: "Why understanding LLMs is becoming a crucial skill for modern software engineers."
+tags: ["AI", "Engineering", "Career"]
+image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80"
+imageAlt: "AI and machine learning"
+---
+
+# The Rise of the AI Engineer
+
+We are witnessing a paradigm shift. Just as mobile and cloud computing defined the last decade, Artificial Intelligence is defining this one. But there's a new role emerging: the AI Engineer.
+
+## What is an AI Engineer?
+
+<Image src="https://images.unsplash.com/photo-1676273780880-6d478f2cdc76?w=800&q=80" alt="AI and neural networks" width={800} height={500} />
+
+An AI Engineer isn't necessarily a machine learning researcher building new models from scratch. Instead, they are software engineers who know how to *apply* existing AI models to solve real-world problems.
+
+They bridge the gap between research and product.
+
+## The Toolkit
+
+1. **LLMs**: GPT-4, Claude, Gemini.
+2. **Vector Databases**: Pinecone, Weaviate, Milvus.
+3. **Frameworks**: LangChain, LlamaIndex, Vercel AI SDK.
+
+## Building a Chatbot
+
+Here's a simple example of how easy it is to stream a response using the Vercel AI SDK:
+
+<CodeBlock lang="typescript" filename="app/api/chat/route.ts" code={`import { OpenAIStream, StreamingTextResponse } from 'ai';
+import { Configuration, OpenAIApi } from 'openai-edge';
+
+const config = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(config);
+
+export async function POST(req: Request) {
+  const { messages } = await req.json();
+  const response = await openai.createChatCompletion({
+    model: 'gpt-4',
+    stream: true,
+    messages,
+  });
+  const stream = OpenAIStream(response);
+  return new StreamingTextResponse(stream);
+}`} />
+
+## The Future
+
+As models get cheaper and faster, we'll see AI embedded in every part of the software stack. From better autocomplete to fully autonomous agents, the possibilities are endless.

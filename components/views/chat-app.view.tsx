@@ -2,6 +2,7 @@
 
 import { useChat } from "@ai-sdk/react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { toast } from "sonner";
 import { Message, MessageContent } from "@/components/ai-elements/message";
 import {
   PromptInput,
@@ -17,7 +18,6 @@ import { MessagePartsRenderer } from "@/components/messages-parts";
 import { parseMessage } from "@/lib/parse-message";
 import { ThemeToggler } from "../theme-toggler";
 import { ChatWelcome } from "./chat-welcome";
-import { toast } from "sonner";
 
 export const ChatAppView = () => {
   const { messages, sendMessage, error } = useChat();
