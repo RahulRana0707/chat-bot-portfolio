@@ -1,27 +1,7 @@
-import createMDX from '@next/mdx';
-import type { NextConfig } from 'next';
-import rehypeSlug from 'rehype-slug';
-import remarkFrontmatter from 'remark-frontmatter';
-import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-        pathname: '/**',
-      },
-    ],
-  },
+  /* config options here */
 };
 
-const withMDX = createMDX({
-  options: {
-    remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
-    rehypePlugins: [rehypeSlug],
-  },
-});
-
-export default withMDX(nextConfig);
+export default nextConfig;

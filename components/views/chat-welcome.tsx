@@ -8,12 +8,12 @@ interface ChatWelcomeProps {
 
 const STARTER_PROMPTS = [
   {
-    id: "skills",
-    text: "What skills does Rahul have?",
+    id: "connect",
+    text: "How can I connect with Rahul?",
   },
   {
-    id: "github",
-    text: "Show me Rahul's recent GitHub work",
+    id: "skills",
+    text: "What skills does Rahul have?",
   },
   {
     id: "resume",
@@ -22,6 +22,10 @@ const STARTER_PROMPTS = [
   {
     id: "projects",
     text: "Tell me about his projects",
+  },
+  {
+    id: "blog",
+    text: "Show me Rahul's blog",
   },
 ] as const;
 

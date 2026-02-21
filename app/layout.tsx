@@ -1,30 +1,29 @@
-import type { Metadata, Viewport } from "next";
-import { Lexend } from "next/font/google";
+import type { Metadata } from "next";
+import { Lexend, Source_Serif_4, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { BackgroundRippleEffect } from "@/components/background-ripple-effect";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
-import { SITE_URL } from "@/lib/site";
 
 const lexend = Lexend({
   subsets: ["latin"],
   display: "swap",
 });
 
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
-  ],
-};
+const sourceSerif = Source_Serif_4({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-source-serif",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-jetbrains-mono",
+});
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: {
-    default: "Rahul Rana | Full Stack Developer",
-    template: "%s | Rahul Rana",
-  },
+  title: "Rahul Rana | Full Stack Developer",
   description:
     "Full Stack Developer passionate about building interactive apps and AI-driven tools. Explore my projects, skills, and experiences through an interactive AI chat interface.",
   keywords: [
@@ -35,28 +34,12 @@ export const metadata: Metadata = {
     "Next.js",
     "AI Chat",
     "Web Development",
-    "Frontend Engineer",
   ],
-  authors: [{ name: "Rahul Rana", url: SITE_URL }],
-  creator: "Rahul Rana",
+  authors: [{ name: "Rahul Rana" }],
   openGraph: {
+    title: "Rahul Rana | Full Stack Developer",
+    description: "Interactive portfolio with AI-powered chat interface",
     type: "website",
-    locale: "en_US",
-    url: SITE_URL,
-    siteName: "Rahul Rana",
-    title: "Rahul Rana | Full Stack Developer",
-    description:
-      "Full Stack Developer passionate about building interactive apps and AI-driven tools. Explore projects, skills, and experiences through an AI chat interface.",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Rahul Rana | Full Stack Developer",
-    description:
-      "Full Stack Developer. Explore my projects, skills, and experiences through an interactive AI chat interface.",
-  },
-  robots: {
-    index: true,
-    follow: true,
   },
 };
 
@@ -68,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${lexend.className} antialiased w-screen min-h-screen overflow-x-hidden scroll-smooth`}
+        className={`${lexend.className} ${sourceSerif.variable} ${jetbrainsMono.variable} antialiased w-screen min-h-screen overflow-x-hidden scroll-smooth`}
       >
         <ThemeProvider
           attribute="class"
@@ -76,7 +59,13 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="w-full h-full min-h-screen">{children}</div>
+          <div className="fixed inset-0 -z-10 h-screen w-screen overflow-hidden">
+            <div className="relative flex min-h-screen w-full flex-col items-start justify-start overflow-hidden">
+              <BackgroundRippleEffect />
+            </div>
+          </div>
+
+          <div className="w-full h-full z-20">{children}</div>
           <Toaster />
         </ThemeProvider>
       </body>
