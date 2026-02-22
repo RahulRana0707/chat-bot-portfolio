@@ -1,6 +1,6 @@
 ---
 title: "How to Create a Shared Database Package in a Monorepo [Step-by-Step Guide]"
-date: "2024-02-20"
+date: "2026-02-20"
 description: "A step-by-step guide to building a shared @workspace/db package using TurboRepo, Drizzle ORM, and PostgreSQL for type-safe reuse across apps."
 tags: ["Monorepo", "Drizzle", "PostgreSQL", "TypeScript", "TurboRepo"]
 image: "/blog/shared-db-monorepo-hero.png"
@@ -24,7 +24,10 @@ We want a shared package **packages/db** that:
 
 First, we created a new directory **packages/db**. Here is the structure:
 
-<CodeBlock lang="plaintext" filename="packages/db structure" code={`packages/db/
+<CodeBlock
+  lang="plaintext"
+  filename="packages/db structure"
+  code={`packages/db/
 ├── src/
 │   ├── schema/
 │   │   └── index.ts  <-- Schema definitions
@@ -32,13 +35,17 @@ First, we created a new directory **packages/db**. Here is the structure:
 │   └── index.ts      <-- Public API
 ├── drizzle.config.ts <-- Drizzle Kit config
 ├── package.json
-└── tsconfig.json`} />
+└── tsconfig.json`}
+/>
 
 ## 3. Configuration (package.json)
 
 We defined the package name as **@workspace/db** and exported the entry point. We also added scripts for drizzle-kit to handle migrations.
 
-<CodeBlock lang="json" filename="packages/db/package.json" code={`{
+<CodeBlock
+  lang="json"
+  filename="packages/db/package.json"
+  code={`{
   "name": "@workspace/db",
   "version": "0.0.1",
   "main": "src/index.ts",
@@ -59,7 +66,8 @@ We defined the package name as **@workspace/db** and exported the entry point. W
   "devDependencies": {
     "drizzle-kit": "^0.20.0"
   }
-}`} />
+}`}
+/>
 
 ## 4. Setting up the Connection (client.ts)
 
@@ -70,7 +78,7 @@ import { Pool } from "pg";
 import * as schema from "./schema";
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL!,
+connectionString: process.env.DATABASE_URL!,
 });
 
 export const db = drizzle(pool, { schema });`} />
@@ -79,8 +87,12 @@ export const db = drizzle(pool, { schema });`} />
 
 We make the db instance and schema available to consumers.
 
-<CodeBlock lang="typescript" filename="packages/db/src/index.ts" code={`export { db } from "./client";
-export * from "./schema";`} />
+<CodeBlock
+  lang="typescript"
+  filename="packages/db/src/index.ts"
+  code={`export { db } from "./client";
+export * from "./schema";`}
+/>
 
 ## 6. Using the Package in an App (e.g., apps/web)
 
@@ -88,10 +100,14 @@ export * from "./schema";`} />
 
 In **apps/web/package.json**, we added the dependency using the workspace protocol:
 
-<CodeBlock lang="json" filename="apps/web/package.json (excerpt)" code={`"dependencies": {
+<CodeBlock
+  lang="json"
+  filename="apps/web/package.json (excerpt)"
+  code={`"dependencies": {
   "@workspace/db": "workspace:*",
   // ...
-}`} />
+}`}
+/>
 
 ### Step B: Import and Use
 

@@ -153,3 +153,19 @@
 .hidden-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+/* Working status chip: green dot pulse (opacity + scale) */
+@keyframes working-dot {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+.animate-working-dot {
+  animation: working-dot 1.5s ease-in-out infinite;
+}

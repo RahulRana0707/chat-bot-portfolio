@@ -3,7 +3,7 @@ import { Skill } from "@/components/all-skills";
 export const EXPERIENCES_CONTENT = [
   {
     name: "Instinct Innovations",
-    logoPath: "/instinct_innovations_logo.webp",
+    logoPath: "/compony-logo/instinct-innovations-logo.svg",
     location: "Andheri, Maharashtra, India",
     duration: "Oct 2023 - Present",
     role: "Software Engineer (Frontend)",
@@ -34,7 +34,7 @@ export const EXPERIENCES_CONTENT = [
   },
   {
     name: "Sensys Technologies Pvt. Ltd",
-    logoPath: "/sensys_technologies.webp",
+    logoPath: "/compony-logo/sensys-technologies-logo.jpeg",
     location: "Goregaon, Mumbai, India",
     duration: "Mar 2023 - Oct 2023",
     role: "Programmer",

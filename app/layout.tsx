@@ -4,6 +4,7 @@ import "./globals.css";
 import { BackgroundRippleEffect } from "@/components/background-ripple-effect";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const lexend = Lexend({
   subsets: ["latin"],
@@ -59,13 +60,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="fixed inset-0 -z-10 h-screen w-screen overflow-hidden">
-            <div className="relative flex min-h-screen w-full flex-col items-start justify-start overflow-hidden">
-              <BackgroundRippleEffect />
-            </div>
-          </div>
-
-          <div className="w-full h-full z-20">{children}</div>
+         
+          <TooltipProvider delayDuration={200}>
+            <div className="w-full h-full z-20">{children}</div>
+          </TooltipProvider>
           <Toaster />
         </ThemeProvider>
       </body>

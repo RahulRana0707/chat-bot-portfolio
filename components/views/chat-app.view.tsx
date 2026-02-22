@@ -1,26 +1,22 @@
 "use client";
 
-import { useChat } from "@ai-sdk/react";
+import { usePersistedChat } from "@/hooks/use-persisted-chat";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { Message, MessageContent } from "@/components/ai-elements/message";
 import {
   PromptInput,
-  PromptInputActionMenu,
   PromptInputBody,
   PromptInputSubmit,
   PromptInputTextarea,
-  PromptInputToolbar,
-  PromptInputTools,
 } from "@/components/ai-elements/prompt-input";
 import { Response } from "@/components/ai-elements/response";
 import { MessagePartsRenderer } from "@/components/messages-parts";
 import { parseMessage } from "@/lib/parse-message";
-import { ThemeToggler } from "../theme-toggler";
 import { ChatWelcome } from "./chat-welcome";
 
 export const ChatAppView = () => {
-  const { messages, sendMessage, error } = useChat();
+  const { messages, sendMessage, error } = usePersistedChat();
 
   const [inputValue, setInputValue] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
@@ -107,9 +103,9 @@ export const ChatAppView = () => {
           });
           setInputValue("");
         }}
-        className="mt-4 relative"
+        className="mt-3 flex flex-row items-center gap-3 divide-y-0 rounded-lg border bg-background p-3 shadow-sm"
       >
-        <PromptInputBody>
+        <PromptInputBody className="min-w-0 flex-1 self-center">
           <PromptInputTextarea
             ref={textareaRef}
             onChange={(e) => {
@@ -117,16 +113,10 @@ export const ChatAppView = () => {
             }}
             value={inputValue}
             placeholder="Ask anything about me......"
+            className="min-h-10 max-h-32 resize-none"
           />
         </PromptInputBody>
-        <PromptInputToolbar>
-          <PromptInputTools>
-            <PromptInputActionMenu>
-              <ThemeToggler />
-            </PromptInputActionMenu>
-          </PromptInputTools>
-          <PromptInputSubmit disabled={!inputValue} status={"ready"} />
-        </PromptInputToolbar>
+        <PromptInputSubmit disabled={!inputValue} status={"ready"} className="shrink-0 self-center" />
       </PromptInput>
     </div>
   );

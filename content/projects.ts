@@ -3,6 +3,7 @@ import { Skill } from "@/components/all-skills";
 export const PROJECTS_CONTENT = [
   {
     title: "Crypto Castle",
+    image: "/project/crypto-castle.png",
     repoUrl: "https://github.com/RahulRana0707/Crypto-Project",
     liveUrl: "https://crypto-castle.vercel.app/",
     description: [
