@@ -23,29 +23,32 @@ const STARTER_PROMPTS = [
     id: "projects",
     text: "Tell me about his projects",
   },
+  {
+    id: "blog",
+    text: "Show me Rahul's blog",
+  },
 ] as const;
 
 export const ChatWelcome = ({ onPromptSelect }: ChatWelcomeProps) => {
   return (
-    <div className="h-full w-full flex flex-col items-center justify-center gap-8 px-4 text-center">
-      <div className="space-y-3">
-        <h1 className="text-4xl font-semibold">👋 Hi, I&apos;m Rahul</h1>
-        <p className="text-lg text-muted-foreground max-w-[500px]">
+    <div className="flex h-full w-full flex-col items-center justify-center gap-5 overflow-auto px-3 py-4 text-center">
+      <div className="space-y-2">
+        <h2 className="text-xl font-semibold">👋 Hi, I&apos;m Rahul</h2>
+        <p className="text-sm text-muted-foreground max-w-[320px]">
           I&apos;m a Full Stack Developer passionate about building interactive
           apps and AI-driven tools.
         </p>
       </div>
-
-      <div className="flex flex-col gap-4 w-full max-w-[500px]">
-        <p className="text-sm text-muted-foreground">Try asking me about:</p>
-        <div className="grid gap-2">
+      <div className="flex w-full max-w-[320px] flex-col gap-2">
+        <p className="text-xs text-muted-foreground">Try asking me about:</p>
+        <div className="grid gap-1.5">
           {STARTER_PROMPTS.map((prompt) => (
             <Suggestion
               key={prompt.id}
               suggestion={prompt.text}
               onClick={onPromptSelect}
-              className="text-sm"
-              size="lg"
+              className="text-xs"
+              size="sm"
             />
           ))}
         </div>

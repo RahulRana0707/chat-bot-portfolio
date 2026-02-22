@@ -1,4 +1,5 @@
 import {
+  RenderBlog,
   RenderBooking,
   RenderEducation,
   RenderExperience,
@@ -31,6 +32,7 @@ const MessagePartMapper: Record<
   personal_info: RenderPersonalDetails,
   resume: RenderResumeDownloadButton,
   booking: RenderBooking,
+  blog: RenderBlog,
 };
 
 export const MessagePartsRenderer = ({

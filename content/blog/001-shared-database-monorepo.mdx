@@ -1,0 +1,140 @@
+---
+title: "How to Create a Shared Database Package in a Monorepo [Step-by-Step Guide]"
+date: "2026-02-20"
+description: "A step-by-step guide to building a shared @workspace/db package using TurboRepo, Drizzle ORM, and PostgreSQL for type-safe reuse across apps."
+tags: ["Monorepo", "Drizzle", "PostgreSQL", "TypeScript", "TurboRepo"]
+image: "/blog/shared-db-monorepo-hero.png"
+imageAlt: "Cosmic landscape representing shared architecture and scale"
+---
+
+Creating a shared database package is a game-changer for monorepos. It allows you to define your database schema and connection logic in one place and reuse it across multiple applications (web apps, API servers, workers) with full type safety.
+
+Here is how we built our **@workspace/db** package using TurboRepo, Drizzle ORM, and PostgreSQL.
+
+## 1. The Goal
+
+We want a shared package **packages/db** that:
+
+- Manages the database connection (Single Source of Truth).
+- Exports the Drizzle client instance.
+- Exports the database schema.
+- Handles migrations.
+
+## 2. Package Structure
+
+First, we created a new directory **packages/db**. Here is the structure:
+
+<CodeBlock
+  lang="plaintext"
+  filename="packages/db structure"
+  code={`packages/db/
+├── src/
+│   ├── schema/
+│   │   └── index.ts  <-- Schema definitions
+│   ├── client.ts     <-- Connection logic
+│   └── index.ts      <-- Public API
+├── drizzle.config.ts <-- Drizzle Kit config
+├── package.json
+└── tsconfig.json`}
+/>
+
+## 3. Configuration (package.json)
+
+We defined the package name as **@workspace/db** and exported the entry point. We also added scripts for drizzle-kit to handle migrations.
+
+<CodeBlock
+  lang="json"
+  filename="packages/db/package.json"
+  code={`{
+  "name": "@workspace/db",
+  "version": "0.0.1",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "drizzle-orm": "^0.30.0",
+    "pg": "^8.0.0"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.20.0"
+  }
+}`}
+/>
+
+## 4. Setting up the Connection (client.ts)
+
+This is where the magic happens. We create a singleton connection pool and wrap it with Drizzle.
+
+<CodeBlock lang="typescript" filename="packages/db/src/client.ts" code={`import { drizzle } from "drizzle-orm/node-postgres";
+import { Pool } from "pg";
+import * as schema from "./schema";
+
+const pool = new Pool({
+connectionString: process.env.DATABASE_URL!,
+});
+
+export const db = drizzle(pool, { schema });`} />
+
+## 5. Exporting Everything (index.ts)
+
+We make the db instance and schema available to consumers.
+
+<CodeBlock
+  lang="typescript"
+  filename="packages/db/src/index.ts"
+  code={`export { db } from "./client";
+export * from "./schema";`}
+/>
+
+## 6. Using the Package in an App (e.g., apps/web)
+
+### Step A: Add Dependency
+
+In **apps/web/package.json**, we added the dependency using the workspace protocol:
+
+<CodeBlock
+  lang="json"
+  filename="apps/web/package.json (excerpt)"
+  code={`"dependencies": {
+  "@workspace/db": "workspace:*",
+  // ...
+}`}
+/>
+
+### Step B: Import and Use
+
+Now we can import **db** directly in our app. Here is an example using it with Better Auth in **apps/web/lib/auth.ts**:
+
+<CodeBlock lang="typescript" filename="apps/web/lib/auth.ts" code={`import { db } from "@workspace/db";
+import { betterAuth } from "better-auth";
+import { drizzleAdapter } from "better-auth/adapters/drizzle";
+
+export const auth = betterAuth({
+    database: drizzleAdapter(db, {
+        provider: "pg",
+    }),
+    // ...
+});`} />
+
+Because we exported the schema, we also get full autocompletion and type safety when writing queries:
+
+<CodeBlock lang="typescript" filename="Example usage" code={`// Example usage in an API route or Server Action
+import { db } from "@workspace/db";
+
+const users = await db.query.users.findMany();`} />
+
+## Why this approach?
+
+- **DRY (Don't Repeat Yourself):** Connection logic and schema are defined once.
+- **Type Safety:** Changes in the schema immediately propagate to all apps.
+- **Easy Migrations:** Run migrations from the package root, affecting the shared DB.
+
+Investing time in your tooling pays reliable dividends.

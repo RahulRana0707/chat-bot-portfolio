@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <!-- Yellow ring -->
+  <circle cx="60" cy="60" r="56" stroke="#EAB308" stroke-width="4" fill="none"/>
+  <!-- Face -->
+  <circle cx="60" cy="60" r="48" fill="#f1f5f9"/>
+  <!-- Eyes -->
+  <circle cx="48" cy="54" r="4" fill="#475569"/>
+  <circle cx="72" cy="54" r="4" fill="#475569"/>
+  <!-- Smile -->
+  <path d="M 44 68 Q 60 80 76 68" stroke="#475569" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <!-- Status badge (small circle bottom-right) -->
+  <circle cx="100" cy="100" r="12" fill="#334155"/>
+  <circle cx="100" cy="100" r="5" fill="#22c55e"/>
+</svg>
