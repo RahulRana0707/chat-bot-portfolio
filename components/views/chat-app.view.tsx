@@ -3,7 +3,7 @@
 import { usePersistedChat } from "@/hooks/use-persisted-chat";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
-import { Message, MessageContent } from "@/components/ai-elements/message";
+import { Message, MessageAvatar, MessageContent } from "@/components/ai-elements/message";
 import {
   PromptInput,
   PromptInputBody,
@@ -56,6 +56,10 @@ export const ChatAppView = () => {
                 key={message.id}
                 from={message.role === "user" ? "user" : "assistant"}
               >
+                <MessageAvatar
+                  src={message.role === "assistant" ? "/rahul-bot-logo.png" : ""}
+                  name={message.role === "user" ? "You" : "Rahul"}
+                />
                 <MessageContent>
                   {message.parts.map((part, i) => {
                     if (part.type === "text") {

@@ -49,11 +49,11 @@ export default async function RootPage() {
         <header className="space-y-6 text-left pb-6">
           <div>
             <Image
-              src="/avatar.svg"
-              alt=""
+              src="/rahul-bot-logo.png"
+              alt="Rahul Rana"
               width={140}
               height={140}
-              className="h-28 w-28 object-contain sm:h-36 sm:w-36"
+              className="h-28 w-28 rounded-full object-cover object-top sm:h-36 sm:w-36"
             />
           </div>
           <div className="space-y-4">

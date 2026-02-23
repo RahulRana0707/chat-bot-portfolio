@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Lexend, Source_Serif_4, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { BackgroundRippleEffect } from "@/components/background-ripple-effect";
 import { ThemeProvider } from "@/components/theme-provider";
+import { SiteHeader } from "@/components/site-header";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
@@ -37,6 +37,10 @@ export const metadata: Metadata = {
     "Web Development",
   ],
   authors: [{ name: "Rahul Rana" }],
+  icons: {
+    icon: "/rahul-bot-logo.png",
+    apple: "/rahul-bot-logo.png",
+  },
   openGraph: {
     title: "Rahul Rana | Full Stack Developer",
     description: "Interactive portfolio with AI-powered chat interface",
@@ -62,6 +66,7 @@ export default function RootLayout({
         >
          
           <TooltipProvider delayDuration={200}>
+            <SiteHeader />
             <div className="w-full h-full z-20">{children}</div>
           </TooltipProvider>
           <Toaster />
