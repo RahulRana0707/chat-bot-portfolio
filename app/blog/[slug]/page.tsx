@@ -1,20 +1,52 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { getBlogPost, compileBlogContent } from "@/lib/mdx";
 import { TableOfContents } from "@/components/blog/table-of-contents";
+import { SITE_URL } from "@/lib/site-url";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateStaticParams() {
+  const { getAllBlogPosts } = await import("@/lib/mdx");
+  const posts = await getAllBlogPosts();
+  return posts.map((post) => ({ slug: post.slug }));
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = await getBlogPost(slug);
   if (!post) return { title: "Post not found" };
+
+  const title = post.frontmatter.title;
+  const description = post.frontmatter.description ?? "";
+  const canonical = `/blog/${slug}`;
+  const images = post.frontmatter.image
+    ? [{ url: post.frontmatter.image, alt: post.frontmatter.imageAlt ?? title }]
+    : undefined;
+
   return {
-    title: `${post.frontmatter.title} | Rahul Rana`,
-    description: post.frontmatter.description,
+    title,
+    description,
+    alternates: { canonical },
+    openGraph: {
+      title,
+      description,
+      url: canonical,
+      type: "article",
+      publishedTime: post.frontmatter.date || undefined,
+      authors: ["Rahul Rana"],
+      images,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images,
+    },
   };
 }
 
@@ -28,8 +60,40 @@ export default async function BlogPostPage({ params }: PageProps) {
       ? await compileBlogContent(post.content)
       : null;
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.frontmatter.title,
+    description: post.frontmatter.description ?? undefined,
+    datePublished: post.frontmatter.date || undefined,
+    author: {
+      "@type": "Person",
+      name: "Rahul Rana",
+      url: SITE_URL,
+    },
+    image: post.frontmatter.image
+      ? `${SITE_URL}${post.frontmatter.image.startsWith("/") ? post.frontmatter.image : `/${post.frontmatter.image}`}`
+      : undefined,
+    publisher: {
+      "@type": "Organization",
+      name: "Rahul Rana",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/rahul-bot-logo.png`,
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/blog/${slug}`,
+    },
+  };
+
   return (
     <div className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       <article className="mx-auto max-w-4xl px-4 py-12">
         <Link
           href="/blog"

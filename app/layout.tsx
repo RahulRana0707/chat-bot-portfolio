@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { SiteHeader } from "@/components/site-header";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { SITE_URL } from "@/lib/site-url";
 
 const lexend = Lexend({
   subsets: ["latin"],
@@ -24,7 +25,11 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Rahul Rana | Full Stack Developer",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Rahul Rana | Full Stack Developer",
+    template: "%s | Rahul Rana",
+  },
   description:
     "Full Stack Developer passionate about building interactive apps and AI-driven tools. Explore my projects, skills, and experiences through an interactive AI chat interface.",
   keywords: [
@@ -45,6 +50,7 @@ export const metadata: Metadata = {
     title: "Rahul Rana | Full Stack Developer",
     description: "Interactive portfolio with AI-powered chat interface",
     type: "website",
+    url: "/",
   },
 };
 
