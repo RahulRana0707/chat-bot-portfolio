@@ -1,34 +1,39 @@
 import { codeToHtml } from "shiki";
 
+import { CodeBlockHeader } from "@/components/ui/code-block-header";
+
 interface CodeBlockProps {
   code?: unknown;
   lang?: unknown;
   filename?: string;
 }
 
+const shikiLang = (lang: string) => (lang === "plaintext" ? "text" : lang);
+
 export async function CodeBlock({ code, lang, filename }: CodeBlockProps) {
   const codeStr = code != null ? String(code) : "";
   const langStr = lang != null ? String(lang) : "text";
-  let html: string;
+  const langForShiki = shikiLang(langStr);
+
+  let htmlLight: string;
+  let htmlDark: string;
   try {
-    html = await codeToHtml(codeStr, {
-      lang: langStr === "plaintext" ? "text" : langStr,
-      theme: "github-dark",
-    });
+    [htmlLight, htmlDark] = await Promise.all([
+      codeToHtml(codeStr, { lang: langForShiki, theme: "github-light" }),
+      codeToHtml(codeStr, { lang: langForShiki, theme: "houston" }),
+    ]);
   } catch {
-    html = await codeToHtml(codeStr, { lang: "text", theme: "github-dark" });
+    htmlLight = await codeToHtml(codeStr, { lang: "text", theme: "github-light" });
+    htmlDark = await codeToHtml(codeStr, { lang: "text", theme: "houston" });
   }
+
   return (
-    <div className="my-4 overflow-hidden rounded-lg border border-border bg-[#0d1117] font-mono">
-      {filename ? (
-        <div className="border-b border-border bg-[#161b22] px-3 py-2 text-xs text-muted-foreground font-mono">
-          {filename}
-        </div>
-      ) : null}
-      <div
-        className="overflow-x-auto p-4 text-sm font-mono [&_pre]:m-0 [&_pre]:bg-transparent"
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
+    <div className="my-4 overflow-hidden rounded-lg border border-border bg-card font-mono">
+      <CodeBlockHeader lang={langStr} filename={filename} code={codeStr} />
+      <div className="overflow-x-auto p-4 text-sm font-mono [&_pre]:m-0 [&_pre]:!bg-transparent [&_pre_code]:!bg-transparent">
+        <div className="dark:hidden" dangerouslySetInnerHTML={{ __html: htmlLight }} />
+        <div className="hidden dark:block" dangerouslySetInnerHTML={{ __html: htmlDark }} />
+      </div>
     </div>
   );
 }

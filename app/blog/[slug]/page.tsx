@@ -130,7 +130,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         ) : null}
 
         <div className="flex gap-8">
-          <div className="min-w-0 flex-1 max-w-prose font-reading prose prose-invert">
+          <div className="min-w-0 flex-1 max-w-3xl font-reading prose prose-invert">
             {postContent}
           </div>
           <TableOfContents entries={post.toc} />
