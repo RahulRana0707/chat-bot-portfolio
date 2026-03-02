@@ -45,8 +45,8 @@ export const ChatAppView = () => {
   }, [error]);
 
   return (
-    <div className="w-full h-full flex flex-col justify-start overflow-hidden">
-      <div className="flex-1 hidden-scrollbar flex flex-col-reverse">
+    <div className="flex h-full w-full flex-col overflow-hidden">
+      <div className="flex min-h-0 flex-1 flex-col-reverse overflow-y-auto hidden-scrollbar">
         {!doesChatHasMessages ? (
           <ChatWelcome onPromptSelect={onPromptSelectHandler} />
         ) : (

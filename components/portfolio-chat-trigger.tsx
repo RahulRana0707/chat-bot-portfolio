@@ -51,7 +51,8 @@ export function PortfolioChatTrigger() {
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogContent
             showCloseButton={true}
-            className="fixed inset-0 z-50 h-[100dvh] w-full max-w-none translate-x-0 translate-y-0 rounded-none border-0 p-0"
+            overlayClassName="backdrop-blur-[2px] duration-500 ease-out"
+            className="fixed inset-0 z-50 h-dvh w-full max-w-none translate-x-0 translate-y-0 rounded-none border-0 p-0 duration-500 ease-out"
           >
             <DialogTitle className="sr-only">Chat</DialogTitle>
             <div className="flex h-full min-h-0 flex-col p-3">
@@ -71,7 +72,7 @@ export function PortfolioChatTrigger() {
           side="top"
           align="end"
           sideOffset={12}
-          className="overflow-hidden p-0"
+          className="overflow-hidden p-0 duration-500 ease-out backdrop-blur-[2px]"
           style={{
             width: DESKTOP_POPOVER_WIDTH,
             height: DESKTOP_POPOVER_HEIGHT,

@@ -125,6 +125,16 @@
   font-family: var(--font-reading);
 }
 
+@layer base {
+  body::selection,
+  body::-webkit-selection {
+    background-color: var(--primary) !important;
+    opacity: 0.9;
+    color: var(--primary-foreground) !important;
+    text-shadow: 0 0 1px currentColor;
+  }
+}
+
 @theme inline {
   --animate-cell-ripple: cell-ripple var(--duration, 200ms) ease-out none 1
     var(--delay, 0ms);
@@ -142,19 +152,16 @@
   }
 }
 
-/* Hide scrollbar but still allow scrolling */
 .hidden-scrollbar {
-  overflow: scroll; /* or auto */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE 10+ */
+  overflow: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-/* Chrome, Safari, Edge */
 .hidden-scrollbar::-webkit-scrollbar {
   display: none;
 }
 
-/* Working status chip: green dot pulse (opacity + scale) */
 @keyframes working-dot {
   0%,
   100% {
