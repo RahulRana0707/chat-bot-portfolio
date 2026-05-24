@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 import {
+  FaAws,
   FaCode,
+  FaCodeBranch,
   FaCss3Alt,
   FaDocker,
   FaGitAlt,
@@ -27,6 +29,8 @@ import {
   SiSass,
   SiTailwindcss,
   SiTypescript,
+  SiNpm,
+  SiVite,
   SiWebpack,
 } from "react-icons/si";
 import { PlaywrightIcon } from "@/assets/icons/playwright-icon";
@@ -61,6 +65,12 @@ export enum Skill {
   REDUX = "Redux",
   WORKFLOW_AUTOMATION = "Workflow Automation",
   JEST = "Jest",
+  VITE = "Vite",
+  AWS_AMPLIFY = "AWS Amplify",
+  AWS_S3 = "AWS S3",
+  AWS_CLOUDFRONT = "AWS CloudFront",
+  CICD = "CI/CD",
+  NPM = "npm",
 }
 
 /** Step 2: Define the structure */
@@ -180,6 +190,30 @@ export const SkillMapper: Record<Skill, SkillData> = {
   [Skill.WORKFLOW_AUTOMATION]: {
     name: Skill.WORKFLOW_AUTOMATION,
     icon: <></>,
+  },
+  [Skill.VITE]: {
+    name: Skill.VITE,
+    icon: <SiVite className="text-purple-500" />,
+  },
+  [Skill.AWS_AMPLIFY]: {
+    name: Skill.AWS_AMPLIFY,
+    icon: <FaAws className="text-orange-500" />,
+  },
+  [Skill.AWS_S3]: {
+    name: Skill.AWS_S3,
+    icon: <FaAws className="text-orange-500" />,
+  },
+  [Skill.AWS_CLOUDFRONT]: {
+    name: Skill.AWS_CLOUDFRONT,
+    icon: <FaAws className="text-orange-500" />,
+  },
+  [Skill.CICD]: {
+    name: Skill.CICD,
+    icon: <FaCodeBranch className="text-green-600" />,
+  },
+  [Skill.NPM]: {
+    name: Skill.NPM,
+    icon: <SiNpm className="text-red-600" />,
   },
 };
 

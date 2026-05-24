@@ -9,6 +9,6 @@ export const PERSOANL_DETAILS_CONTENT = [
   },
   {
     name: "Location",
-    value: "Andheri, Maharashtra, India",
+    value: "Mumbai, India",
   },
 ];

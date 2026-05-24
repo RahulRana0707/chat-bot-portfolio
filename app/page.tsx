@@ -18,18 +18,18 @@ import { cn } from "@/lib/utils";
 /** Skills shown inline in the header sentence (first three + "and" + one more) */
 const HEADER_SKILLS: Skill[] = [Skill.REACT, Skill.TYPESCRIPT, Skill.NEXTJS];
 const HEADER_SKILL_AND: Skill = Skill.POSTGRESQL;
-const RESUME_URL = "/rahul_rana_wd_resume.pdf";
+const RESUME_URL = "/rahul_rana_resume_latest.pdf";
 const RESUME_DOWNLOAD_NAME = "Rahul_Rana_Resume.pdf";
 
 /** Condensed summary per experience (not full resume copy). */
 const EXPERIENCE_SUMMARIES: Record<string, string[]> = {
   "Instinct Innovations": [
-    "Re-architected Playwright framework (POM, TypeScript); reduced maintenance across 500+ tests.",
-    "Built Tiny Forms (React, Atomic Design) and Connection Module for 100+ integrations; cut load time 30%; mentored juniors on AI tooling.",
+    "Contributed to a low-code automation platform end-to-end — Form Builder, Connection framework (100+ integrations), and node-based workflow engine.",
+    "Owned frontend performance (LCP, TTI, Lighthouse), rebuilt Playwright framework (500+ tests, 70% less maintenance), and managed AWS Amplify deployments.",
   ],
   "Sensys Technologies Pvt. Ltd": [
-    "Shipped pixel-perfect React UIs from Figma; delivered on time.",
-    "Improved platform load time by 40% by resolving frontend bottlenecks.",
+    "Shipped pixel-perfect React UIs from Figma/UX designs; delivered on time.",
+    "Resolved frontend performance bottlenecks, improving platform load time by 40%.",
   ],
 };
 
