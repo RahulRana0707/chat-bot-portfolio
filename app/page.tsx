@@ -12,7 +12,8 @@ import { PortfolioExperienceSection } from "@/components/portfolio-experience-se
 import { PortfolioSocialLinks } from "@/components/portfolio-social-links";
 import { BlogCard } from "@/components/blog-card";
 import { ProjectCard } from "@/components/project-card";
-import { PortfolioChatTrigger } from "@/components/portfolio-chat-trigger";
+import { PortfolioChatIntroLink } from "@/components/portfolio-chat-intro-link";
+import { PortfolioChatOpenButton } from "@/components/portfolio-chat-open-button";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -80,8 +81,13 @@ export default async function RootPage() {
               . With a focus on <strong className="text-foreground">clean UI</strong>. Enthusiastic about{" "}
               <strong className="text-foreground">developer experience</strong>.
             </p>
+            <p className="text-muted-foreground leading-relaxed text-sm sm:text-base max-w-prose">
+              You can also <PortfolioChatIntroLink /> anything about my work,
+              skills, or experience.
+            </p>
             <div className="flex flex-wrap gap-3">
-              <Button asChild size="default" className="gap-2">
+              <PortfolioChatOpenButton />
+              <Button asChild variant="outline" size="default" className="gap-2">
                 <a
                   href={PROFILE.resume.url}
                   download={PROFILE.resume.downloadName}
@@ -93,7 +99,7 @@ export default async function RootPage() {
                 </a>
               </Button>
               <Button asChild variant="outline" size="default" className="gap-2">
-                <a href={`mailto:${PROFILE.email}`} title="Email">
+                <a href={`mailto:${PROFILE.email}`} title="Email" className="gap-2">
                   <Send className="size-4" />
                   Get in touch
                 </a>
@@ -205,7 +211,6 @@ export default async function RootPage() {
           </p>
         </footer>
       </div>
-      <PortfolioChatTrigger />
     </main>
   );
 }

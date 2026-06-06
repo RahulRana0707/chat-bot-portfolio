@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Lexend, Source_Serif_4, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { PortfolioChatProvider } from "@/components/portfolio-chat-provider";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SiteHeader } from "@/components/site-header";
 import { Toaster } from "@/components/ui/sonner";
@@ -72,10 +73,12 @@ export default function RootLayout({
           disableTransitionOnChange
         >
          
-          <TooltipProvider delayDuration={200}>
-            <SiteHeader />
-            <div className="w-full h-full z-20">{children}</div>
-          </TooltipProvider>
+          <PortfolioChatProvider>
+            <TooltipProvider delayDuration={200}>
+              <SiteHeader />
+              <div className="w-full h-full z-20">{children}</div>
+            </TooltipProvider>
+          </PortfolioChatProvider>
           <Toaster />
           <Analytics />
         </ThemeProvider>

@@ -3,6 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { usePortfolioChat } from "@/components/portfolio-chat-provider";
+import { Button } from "@/components/ui/button";
 import { ThemeToggler } from "@/components/theme-toggler";
 import { cn } from "@/lib/utils";
 
@@ -13,6 +15,7 @@ const NAV_LINKS = [
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const { openChat } = usePortfolioChat();
 
   return (
     <header className="sticky top-0 z-50 flex w-full justify-center px-4 pt-4 sm:px-6 sm:pt-6">
@@ -51,6 +54,14 @@ export function SiteHeader() {
               {label}
             </Link>
           ))}
+          <Button
+            type="button"
+            variant="ghost"
+            onClick={openChat}
+            className="h-auto rounded-full px-4 py-2 text-sm font-medium text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+          >
+            Chat
+          </Button>
         </nav>
 
         <div className="flex shrink-0 items-center">
