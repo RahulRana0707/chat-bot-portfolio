@@ -12,6 +12,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { usePortfolioChat } from "@/components/portfolio-chat-provider";
+import { Button } from "@/components/ui/button";
 import { ChatAppView } from "@/components/views/chat-app.view";
 
 const DESKTOP_POPOVER_WIDTH = 420;
@@ -30,18 +32,19 @@ function useIsMobile() {
 }
 
 export function PortfolioChatTrigger() {
-  const [open, setOpen] = useState(false);
+  const { open, setOpen } = usePortfolioChat();
   const isMobile = useIsMobile();
 
   const triggerButton = (
-    <button
+    <Button
       type="button"
+      size="icon"
       onClick={() => setOpen(true)}
-      className="flex size-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+      className="size-14 rounded-full shadow-lg transition-transform hover:scale-105 [&_svg]:size-7"
       aria-label="Open chat"
     >
-      <MessageCircle className="size-7" />
-    </button>
+      <MessageCircle />
+    </Button>
   );
 
   if (isMobile) {
