@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import type { IMessageRendererProps } from "@/components/messages-parts";
 import { Label } from "@/components/ui/label";
-import { PERSOANL_DETAILS_CONTENT } from "@/content/personal-details";
+import { PERSONAL_DETAILS_CONTENT } from "@/content/personal-details";
 
 export const RenderPersonalDetails = ({
   generatedText,
@@ -16,7 +16,7 @@ export const RenderPersonalDetails = ({
 
   return (
     <div className="flex flex-col gap-y-3">
-      {PERSOANL_DETAILS_CONTENT.map((item) => {
+      {PERSONAL_DETAILS_CONTENT.map((item) => {
         const shouldSkip = doesContentIncludeInGeneratedText(item.value);
         if (shouldSkip) return null;
         return (

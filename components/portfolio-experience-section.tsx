@@ -13,6 +13,7 @@ export type ExperienceEntry = {
   role: string;
   responsibilities: string[];
   skills: Skill[];
+  homepageSummary?: string[];
 };
 
 function isCurrent(exp: ExperienceEntry) {
@@ -54,10 +55,8 @@ function WorkingChip() {
 
 export function PortfolioExperienceSection({
   experiences,
-  summaries,
 }: {
   experiences: ExperienceEntry[];
-  summaries?: Record<string, string[]>;
 }) {
   const currentIndex = experiences.findIndex(isCurrent);
   const current =
@@ -129,7 +128,7 @@ export function PortfolioExperienceSection({
         {past.map((exp) => {
           const open = expanded.has(exp.name);
           const summaryBullets =
-            summaries?.[exp.name] ?? exp.responsibilities.slice(0, 2);
+            exp.homepageSummary ?? exp.responsibilities.slice(0, 2);
 
           return (
             <li key={exp.name}>

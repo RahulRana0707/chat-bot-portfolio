@@ -5,9 +5,7 @@ import { ChevronRight } from "lucide-react";
 import { SiLinkedin } from "react-icons/si";
 import { GoogleCalendarIcon } from "@/assets/icons/google-calendar";
 import { Button } from "@/components/ui/button";
-
-const CALENDAR_LINK = "https://calendar.app.google/Ks5bCFfPTsq58F4A7";
-const LINKEDIN_LINK = "https://www.linkedin.com/in/rahul-rana-663877241/";
+import { PROFILE } from "@/content/profile";
 
 export const RenderBooking = () => {
   return (
@@ -23,7 +21,7 @@ export const RenderBooking = () => {
             className="bg-[#0077B5] hover:bg-[#00669c] text-white px-4"
           >
             <motion.button
-              onClick={() => window.open(LINKEDIN_LINK, "_blank")}
+              onClick={() => window.open(PROFILE.booking.linkedinUrl, "_blank")}
               whileHover="hover"
               className="flex items-center gap-2 cursor-pointer"
             >
@@ -51,7 +49,7 @@ export const RenderBooking = () => {
             className="px-4 border-muted-foreground/20 hover:border-muted-foreground/50"
           >
             <motion.button
-              onClick={() => window.open(CALENDAR_LINK, "_blank")}
+              onClick={() => window.open(PROFILE.booking.calendarUrl, "_blank")}
               whileHover="hover"
               className="flex items-center gap-2 cursor-pointer"
             >

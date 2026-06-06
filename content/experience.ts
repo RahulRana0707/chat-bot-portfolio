@@ -50,5 +50,9 @@ export const EXPERIENCES_CONTENT = [
       Skill.NODEJS,
       Skill.TAILWIND,
     ],
+    homepageSummary: [
+      "Shipped pixel-perfect React UIs from Figma/UX designs; delivered on time.",
+      "Resolved frontend performance bottlenecks, improving platform load time by 40%.",
+    ],
   },
 ];

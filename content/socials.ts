@@ -1,4 +1,5 @@
 import { SiGithub, SiGmail, SiLeetcode, SiLinkedin } from "react-icons/si";
+import { PROFILE } from "@/content/profile";
 
 export const SOCIALS_CONTENT = [
   {
@@ -21,7 +22,7 @@ export const SOCIALS_CONTENT = [
   },
   {
     name: "Email",
-    link: "mailto:rahul.dev.240801@gmail.com",
+    link: `mailto:${PROFILE.email}`,
     icon: SiGmail,
     iconClassName: "text-red-600",
   },
