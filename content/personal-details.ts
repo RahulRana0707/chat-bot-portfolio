@@ -1,14 +1,7 @@
-export const PERSOANL_DETAILS_CONTENT = [
-  {
-    name: "Email",
-    value: "rahul.dev.240801@gmail.com",
-  },
-  {
-    name: "Phone",
-    value: "+91 8600639680",
-  },
-  {
-    name: "Location",
-    value: "Mumbai, India",
-  },
-];
+import { PROFILE } from "@/content/profile";
+
+export const PERSONAL_DETAILS_CONTENT = [
+  { name: "Email", value: PROFILE.email },
+  { name: "Phone", value: PROFILE.phone },
+  { name: "Location", value: PROFILE.location },
+] as const;

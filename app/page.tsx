@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FileDown, Send } from "lucide-react";
 import { getAllBlogPosts } from "@/lib/mdx";
 import { EXPERIENCES_CONTENT } from "@/content/experience";
+import { PROFILE } from "@/content/profile";
 import { PROJECTS_CONTENT } from "@/content/projects";
 import { SKILLS_CONTENT } from "@/content/skills";
 import { SOCIALS_CONTENT } from "@/content/socials";
@@ -18,20 +19,6 @@ import { cn } from "@/lib/utils";
 /** Skills shown inline in the header sentence (first three + "and" + one more) */
 const HEADER_SKILLS: Skill[] = [Skill.REACT, Skill.TYPESCRIPT, Skill.NEXTJS];
 const HEADER_SKILL_AND: Skill = Skill.POSTGRESQL;
-const RESUME_URL = "/rahul_rana_resume_latest.pdf";
-const RESUME_DOWNLOAD_NAME = "Rahul_Rana_Resume.pdf";
-
-/** Condensed summary per experience (not full resume copy). */
-const EXPERIENCE_SUMMARIES: Record<string, string[]> = {
-  "Instinct Innovations": [
-    "Contributed to a low-code automation platform end-to-end — Form Builder, Connection framework (100+ integrations), and node-based workflow engine.",
-    "Owned frontend performance (LCP, TTI, Lighthouse), rebuilt Playwright framework (500+ tests, 70% less maintenance), and managed AWS Amplify deployments.",
-  ],
-  "Sensys Technologies Pvt. Ltd": [
-    "Shipped pixel-perfect React UIs from Figma/UX designs; delivered on time.",
-    "Resolved frontend performance bottlenecks, improving platform load time by 40%.",
-  ],
-};
 
 export const metadata = {
   title: "Rahul Rana | Portfolio",
@@ -96,8 +83,8 @@ export default async function RootPage() {
             <div className="flex flex-wrap gap-3">
               <Button asChild size="default" className="gap-2">
                 <a
-                  href={RESUME_URL}
-                  download={RESUME_DOWNLOAD_NAME}
+                  href={PROFILE.resume.url}
+                  download={PROFILE.resume.downloadName}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -106,7 +93,7 @@ export default async function RootPage() {
                 </a>
               </Button>
               <Button asChild variant="outline" size="default" className="gap-2">
-                <a href="mailto:rahul.dev.240801@gmail.com" title="Email">
+                <a href={`mailto:${PROFILE.email}`} title="Email">
                   <Send className="size-4" />
                   Get in touch
                 </a>
@@ -119,10 +106,7 @@ export default async function RootPage() {
         </header>
 
         <div className="py-6">
-          <PortfolioExperienceSection
-            experiences={EXPERIENCES_CONTENT}
-            summaries={EXPERIENCE_SUMMARIES}
-          />
+          <PortfolioExperienceSection experiences={EXPERIENCES_CONTENT} />
         </div>
 
         <section className="py-6">
@@ -213,7 +197,7 @@ export default async function RootPage() {
             <span className="font-medium text-foreground">Rahul Rana</span>
             {" · "}
             <a
-              href="mailto:rahul.dev.240801@gmail.com"
+              href={`mailto:${PROFILE.email}`}
               className="underline underline-offset-2 hover:text-foreground"
             >
               Get in touch
