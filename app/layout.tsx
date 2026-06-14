@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     url: "/",
     images: [
       {
-        url: "/rahul-bot-logo.png",
+        url: `${SITE_URL}/rahul-bot-logo.png`,
         alt: "Rahul Rana",
       },
     ],
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Rahul Rana | Full Stack Developer",
     description: "Interactive portfolio with AI-powered chat interface",
-    images: ["/rahul-bot-logo.png"],
+    images: [`${SITE_URL}/rahul-bot-logo.png`],
   },
 };
 
