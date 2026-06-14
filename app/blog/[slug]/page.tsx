@@ -16,7 +16,9 @@ export async function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }));
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = await getBlogPost(slug);
   if (!post) return { title: "Post not found" };
@@ -117,7 +119,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         </header>
 
         {post.frontmatter.image ? (
-          <div className="relative w-full aspect-[2/1] rounded-lg overflow-hidden border border-border mb-10">
+          <div className="relative w-full aspect-2/1 rounded-lg overflow-hidden border border-border mb-10">
             <Image
               src={post.frontmatter.image}
               alt={post.frontmatter.imageAlt ?? post.frontmatter.title}

@@ -43,6 +43,18 @@ export const metadata: Metadata = {
     description: "Interactive portfolio with AI-powered chat interface",
     type: "website",
     url: "/",
+    images: [
+      {
+        url: "/rahul-bot-logo.png",
+        alt: "Rahul Rana",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Rahul Rana | Full Stack Developer",
+    description: "Interactive portfolio with AI-powered chat interface",
+    images: ["/rahul-bot-logo.png"],
   },
 };
 
