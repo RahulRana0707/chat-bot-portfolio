@@ -23,17 +23,19 @@ export function ProjectCard({ project }: { project: ProjectCardItem }) {
 
   return (
     <article className="group overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-shadow hover:shadow-md">
-      <div className="relative aspect-video w-full overflow-hidden bg-muted/30">
-        <Image
-          src={imageSrc}
-          alt=""
-          fill
-          className="object-cover transition-transform group-hover:scale-[1.02]"
-          unoptimized={imageSrc.endsWith(".svg")}
-          sizes="(max-width: 640px) 100vw, 50vw"
-        />
+      <div className="p-3">
+        <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-border/10 bg-muted/30">
+          <Image
+            src={imageSrc}
+            alt=""
+            fill
+            className="object-cover transition-transform group-hover:scale-[1.02]"
+            unoptimized={imageSrc.endsWith(".svg")}
+            sizes="(max-width: 640px) 100vw, 50vw"
+          />
+        </div>
       </div>
-      <div className="p-5 space-y-3">
+      <div className="px-4 pb-4 space-y-3">
         <h3 className="font-semibold text-foreground line-clamp-2 leading-snug">
           {project.title}
         </h3>
@@ -96,8 +98,10 @@ export function ProjectCard({ project }: { project: ProjectCardItem }) {
 export function ProjectCardSkeleton() {
   return (
     <div className="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
-      <div className="aspect-video w-full bg-muted/50 animate-pulse" />
-      <div className="p-5 space-y-3">
+      <div className="p-3">
+        <div className="aspect-video w-full rounded-2xl border border-border/10 bg-muted/50 animate-pulse" />
+      </div>
+      <div className="px-4 pb-4 space-y-3">
         <div className="h-5 w-4/5 rounded bg-muted animate-pulse" />
         <div className="space-y-1.5">
           <div className="h-3.5 w-full rounded bg-muted/80 animate-pulse" />

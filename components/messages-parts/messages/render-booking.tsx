@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
-import { SiLinkedin } from "react-icons/si";
+import { SlSocialLinkedin } from "react-icons/sl";
 import { GoogleCalendarIcon } from "@/assets/icons/google-calendar";
 import { Button } from "@/components/ui/button";
 import { PROFILE } from "@/content/profile";
@@ -31,7 +31,7 @@ export const RenderBooking = () => {
                 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
-                <SiLinkedin className="w-4 h-4" />
+                <SlSocialLinkedin className="w-4 h-4" />
               </motion.span>
               <span>Message on LinkedIn</span>
             </motion.button>

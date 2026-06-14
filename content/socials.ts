@@ -1,4 +1,5 @@
-import { SiGithub, SiGmail, SiLeetcode, SiLinkedin } from "react-icons/si";
+import { SiGithub, SiGmail, SiLeetcode } from "react-icons/si";
+import { SlSocialLinkedin } from "react-icons/sl";
 import { PROFILE } from "@/content/profile";
 
 export const SOCIALS_CONTENT = [
@@ -11,7 +12,7 @@ export const SOCIALS_CONTENT = [
   {
     name: "LinkedIn",
     link: "https://www.linkedin.com/in/rahul-rana-663877241/",
-    icon: SiLinkedin,
+    icon: SlSocialLinkedin,
     iconClassName: "text-blue-600",
   },
   {

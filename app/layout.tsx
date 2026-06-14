@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Lexend, Source_Serif_4, JetBrains_Mono } from "next/font/google";
+import { Varela_Round } from "next/font/google";
 import "./globals.css";
 import { PortfolioChatProvider } from "@/components/portfolio-chat-provider";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -9,21 +9,11 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Analytics } from "@vercel/analytics/next";
 import { SITE_URL } from "@/lib/site-url";
 
-const lexend = Lexend({
+const varelaRound = Varela_Round({
   subsets: ["latin"],
   display: "swap",
-});
-
-const sourceSerif = Source_Serif_4({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-source-serif",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-jetbrains-mono",
+  variable: "--font-varela-round",
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -64,7 +54,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${lexend.className} ${sourceSerif.variable} ${jetbrainsMono.variable} antialiased w-screen min-h-screen overflow-x-hidden scroll-smooth`}
+        className={`${varelaRound.className} antialiased w-screen min-h-screen overflow-x-hidden scroll-smooth`}
       >
         <ThemeProvider
           attribute="class"
@@ -72,7 +62,6 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-         
           <PortfolioChatProvider>
             <TooltipProvider delayDuration={200}>
               <SiteHeader />
