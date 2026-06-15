@@ -8,6 +8,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Analytics } from "@vercel/analytics/next";
 import { SITE_URL } from "@/lib/site-url";
+import { WelcomeOverlay } from "@/components/welcome/welcome-overlay";
 
 const varelaRound = Varela_Round({
   subsets: ["latin"],
@@ -80,6 +81,7 @@ export default function RootLayout({
               <div className="w-full h-full z-20">{children}</div>
             </TooltipProvider>
           </PortfolioChatProvider>
+          <WelcomeOverlay />
           <Toaster />
           <Analytics />
         </ThemeProvider>
