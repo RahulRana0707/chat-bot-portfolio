@@ -96,7 +96,8 @@ export default async function BlogPostPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
-      <article className="mx-auto max-w-4xl px-4 py-12">
+      {/* Same column as nav / homepage: max-w-3xl + px-4 */}
+      <article className="mx-auto max-w-3xl px-4 py-12">
         <Link
           href="/blog"
           className="text-sm text-muted-foreground hover:text-primary mb-6 inline-block"
@@ -119,23 +120,22 @@ export default async function BlogPostPage({ params }: PageProps) {
         </header>
 
         {post.frontmatter.image ? (
-          <div className="relative w-full aspect-2/1 rounded-lg overflow-hidden border border-border mb-10">
+          <div className="relative mb-10 aspect-2/1 w-full overflow-hidden rounded-lg border border-border">
             <Image
               src={post.frontmatter.image}
               alt={post.frontmatter.imageAlt ?? post.frontmatter.title}
               fill
               className="object-cover"
               priority
-              sizes="(max-width: 1024px) 100vw, 896px"
+              sizes="(max-width: 768px) 100vw, 768px"
             />
           </div>
         ) : null}
 
-        <div className="flex gap-8">
-          <div className="min-w-0 flex-1 max-w-3xl font-reading prose prose-invert">
-            {postContent}
-          </div>
-          <TableOfContents entries={post.toc} />
+        <TableOfContents entries={post.toc} className="mb-10 w-full max-w-none" />
+
+        <div className="min-w-0 w-full font-reading prose prose-invert max-w-none">
+          {postContent}
         </div>
       </article>
     </div>

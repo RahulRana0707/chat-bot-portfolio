@@ -39,18 +39,37 @@ Live demo: https://rahul-bot.vercel.app/
 pnpm install
 ```
 
-2. Run the dev server:
+2. Copy env template and add secrets (optional but needed for the contribution calendar):
+
+```bash
+cp .env.example .env.local
+```
+
+Set `GITHUB_TOKEN` in `.env.local` (see [GitHub token setup](#github-contribution-calendar) below). Without it, the Activity section shows a graceful fallback instead of the chart.
+
+3. Run the dev server:
 
 ```bash
 pnpm dev
 ```
 
-3. Visit `http://localhost:3000`
+4. Visit `http://localhost:3005`
 
 Notes:
 
 - Content for the site is driven from `content/` and MDX files under `content/blog/`.
 - The chat assistant prompt and behavior live under `prompt/` and `lib/parse-message.ts`.
+
+## GitHub contribution calendar
+
+The homepage **Activity** section loads your real GitHub contribution graph via the GraphQL API.
+
+1. Create a token at [GitHub → Settings → Developer settings → Personal access tokens](https://github.com/settings/tokens).
+2. **Classic:** generate a personal access token (no scopes required for public contribution data).  
+   **Fine-grained:** resource owner = your user; repository access can be “Public repositories”; permissions minimal (public profile is enough).
+3. Local: put `GITHUB_TOKEN=ghp_...` in `.env.local` (never commit this file).
+4. Production (Vercel): Project → Settings → Environment Variables → add `GITHUB_TOKEN` for Production (and Preview if you want).
+5. Restart `pnpm dev` after adding the local token.
 
 ## Adding or Removing Assets
 

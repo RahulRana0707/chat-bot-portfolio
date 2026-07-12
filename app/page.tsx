@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FileDown, Send } from "lucide-react";
 import { getAllBlogPosts } from "@/lib/mdx";
+import { getContributionCalendar } from "@/lib/github";
 import { EXPERIENCES_CONTENT } from "@/content/experience";
 import { PROFILE } from "@/content/profile";
 import { PROJECTS_CONTENT } from "@/content/projects";
@@ -10,6 +11,7 @@ import { SOCIALS_CONTENT } from "@/content/socials";
 import { SkillMapper, Skill, type Skill as SkillType } from "@/components/all-skills";
 import { PortfolioExperienceSection } from "@/components/portfolio-experience-section";
 import { PortfolioSocialLinks } from "@/components/portfolio-social-links";
+import { GitHubContributionSection } from "@/components/github-contribution-section";
 import { BlogCard } from "@/components/blog-card";
 import { ProjectCard } from "@/components/project-card";
 import { PortfolioChatIntroLink } from "@/components/portfolio-chat-intro-link";
@@ -28,7 +30,10 @@ export const metadata = {
 };
 
 export default async function RootPage() {
-  const posts = await getAllBlogPosts();
+  const [posts, contributionCalendar] = await Promise.all([
+    getAllBlogPosts(),
+    getContributionCalendar(),
+  ]);
 
   return (
     <main className="font-reading min-h-screen bg-background text-foreground">
@@ -143,6 +148,8 @@ export default async function RootPage() {
             ))}
           </div>
         </section>
+
+        <GitHubContributionSection calendar={contributionCalendar} />
 
         <section className="py-6">
           <h2 className="text-xl font-semibold tracking-tight mb-4">

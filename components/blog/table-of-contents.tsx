@@ -73,20 +73,20 @@ export function TableOfContents({ entries, className }: TableOfContentsProps) {
   return (
     <aside
       className={cn(
-        "hidden w-52 shrink-0 self-start text-sm lg:block",
-        "sticky top-24 max-h-[calc(100vh-6rem)] overflow-visible",
+        // Inline within the content column (no wider sidebar)
+        "w-full text-sm rounded-xl border border-border/60 bg-muted/20 px-4 py-3",
         className,
       )}
       aria-label="On this page"
     >
-      <p className="mb-3 font-semibold text-foreground">On this page</p>
-      <nav className="space-y-1">
+      <p className="mb-2 font-semibold text-foreground">On this page</p>
+      <nav className="flex flex-col gap-0.5">
         {entries.map(({ id, text, level }) => (
           <a
             key={id}
             href={`#${id}`}
             className={cn(
-              "block rounded-md py-1 pr-2 transition-colors hover:text-primary",
+              "rounded-md py-1 pr-2 transition-colors hover:text-primary",
               level === 3 && "pl-3",
               activeId === id
                 ? "font-medium text-primary"

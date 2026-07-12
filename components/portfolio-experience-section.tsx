@@ -116,9 +116,11 @@ export function PortfolioExperienceSection({
           </div>
 
           <ul className="list-disc pl-5 space-y-1 text-sm text-foreground/85 leading-relaxed">
-            {current.responsibilities.map((line, i) => (
-              <li key={i}>{line}</li>
-            ))}
+            {(current.homepageSummary ?? current.responsibilities).map(
+              (line, i) => (
+                <li key={i}>{line}</li>
+              ),
+            )}
           </ul>
         </div>
       )}

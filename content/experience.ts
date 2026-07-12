@@ -7,6 +7,7 @@ export const EXPERIENCES_CONTENT = [
     location: "Mumbai, India",
     duration: "Oct 2023 - Present",
     role: "Associate Software Engineer",
+    // Full detail — used for AI knowledge context (and chat when full detail is preferred)
     responsibilities: [
       "Contributed to the end-to-end evolution of a low-code automation and integration platform, working across product design, frontend architecture, developer tooling, and deployment, treating the platform as a long-term, production-grade system rather than isolated features.",
       "Contributed to the architecture and development of a highly configurable Form Builder system with conditional routing, dynamic data resolution, and a node-based visual workflow engine, enabling non-technical users to model complex logic without custom code.",
@@ -15,6 +16,16 @@ export const EXPERIENCES_CONTENT = [
       "Rebuilt the Playwright automation framework using TypeScript + POM, scaling it to 500+ test cases and cutting test maintenance effort by 70%.",
       "Managed and maintained AWS Amplify deployments for multiple web applications, ensuring smooth CI/CD pipelines, environment consistency, and reliable production rollouts.",
       "Mentored junior developers in leveraging AI tools to accelerate product development, achieving a 40% increase in efficiency.",
+    ],
+    // Short one-liners — homepage / UI only
+    homepageSummary: [
+      "Built and evolved a production-grade low-code automation platform end-to-end (frontend, tooling, deployment).",
+      "Architected a configurable Form Builder with conditional routing and a node-based visual workflow engine.",
+      "Designed a modular integration framework powering 100+ reusable third-party connectors.",
+      "Owned frontend performance — improved LCP, TTI, and Lighthouse via lazy loading, code splitting, and caching.",
+      "Rebuilt Playwright (TypeScript + POM) to 500+ tests, cutting maintenance effort by 70%.",
+      "Managed AWS Amplify CI/CD for multiple web apps with reliable production rollouts.",
+      "Mentored juniors on AI-assisted development, boosting team efficiency by ~40%.",
     ],
     skills: [
       Skill.REACT,
